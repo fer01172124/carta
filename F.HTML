@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carta Animada</title>
+  <style>
+    body {
+      background: #f8f0e3;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .sobre {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background: #d94f4f;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      transition: transform 1s ease;
+    }
+
+    .tapa {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #c13d3d;
+      clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 100%, 0 100%);
+      transform-origin: top;
+      transition: transform 1s ease;
+      z-index: 2;
+    }
+
+    .contenido {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+      padding: 15px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .contenido img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 10px;
+      animation: aparecer 1s ease forwards;
+    }
+
+    .contenido p {
+      font-size: 1rem;
+      color: #333;
+      animation: slideIn 1s ease forwards;
+    }
+
+    .sobre.abierto .tapa {
+      transform: rotateX(180deg);
+    }
+
+    .sobre.abierto .contenido {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background: #d94f4f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #b23b3b;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sobre" id="sobre">
+    <div class="tapa"></div>
+    <div class="contenido">
+      <img src="https://i.pinimg.com/originals/f7/e7/52/f7e752cdf31b6a4a56d45c431e869d27.gif" alt="Corazón">
+      <p>Hola bola, perdón si a veces no planeo las cosas como tú, pero te amo mucho. Ya cumplimos otro mesesote, ma. Sé que no siempre estamos de la mejor manera, pero te amo mucho, bola ❤️</p>
+    </div>
+  </div>
+
+  <button class="btn" onclick="abrirCarta()">Ábreme</button>
+
+  <script>
+    function abrirCarta() {
+      document.getElementById('sobre').classList.toggle('abierto');
+    }
+  </script>
+
+</body>
+</html>
